@@ -1,0 +1,15 @@
+request:
+  method: GET
+  url: /api/v1/doctor/122
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  body:
+    id: "122"
+    firstName: "firstName"
+    lastName: "lastName"
+    age: "1"
+    address: "address"
+  headers:
+    Content-Type: application/json

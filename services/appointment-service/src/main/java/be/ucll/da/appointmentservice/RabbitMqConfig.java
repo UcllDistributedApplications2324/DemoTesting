@@ -111,6 +111,12 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    public Declarables createAppointmentFinalizedExchange(){
+        return new Declarables(
+                new FanoutExchange("x.appointment-finalized"));
+    }
+
+    @Bean
     public Declarables createSendEmailQueue(){
         return new Declarables(new Queue("q.notification-service.send-email"));
     }

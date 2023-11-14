@@ -15,6 +15,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.8</spring-cloud.version>
+		<spring-cloud-contract.plugin.version>3.1.8</spring-cloud-contract.plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -67,6 +68,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- Dependencies needed for generated classes -->
 		<dependency>
 			<groupId>org.openapitools</groupId>
@@ -109,32 +116,28 @@
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/doctor-service-api.yml</inputSpec>
-							<generatorName>java</generatorName>
-							<library>resttemplate</library>
-							<generateApis>true</generateApis>
-							<generateApiDocumentation>false</generateApiDocumentation>
-							<generateApiTests>false</generateApiTests>
-							<generateModels>true</generateModels>
-							<generateModelDocumentation>false</generateModelDocumentation>
-							<generateModelTests>false</generateModelTests>
-							<skipValidateSpec>true</skipValidateSpec>
-							<generateSupportingFiles>false</generateSupportingFiles>
-							<generateApis>false</generateApis>
-							<modelPackage>be.ucll.da.doctorservice.api.messaging.model</modelPackage>
-
+							<generatorName>spring</generatorName>
+							<apiPackage>be.ucll.da.doctorservice.api</apiPackage>
+							<modelPackage>be.ucll.da.doctorservice.api.model</modelPackage>
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+							<generateAliasAsModel>true</generateAliasAsModel>
 							<configOptions>
-								<dateLibrary>java8</dateLibrary>
-								<java8>true</java8>
-								<useBeanValidation>false</useBeanValidation>
-								<performBeanValidation>false</performBeanValidation>
-								<interfaceOnly>false</interfaceOnly>
-								<useOptional>false</useOptional>
-								<serializableModel>true</serializableModel>
-								<openApiNullable>false</openApiNullable>
+								<delegatePattern>true</delegatePattern>
+								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
+				<version>${spring-cloud-contract.plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<baseClassForTests>be.ucll.da.doctorservice.contract.BaseTestClass</baseClassForTests>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
