@@ -1,4 +1,4 @@
-package be.ucll.da.appointmentservice;
+package be.ucll.da.appointmentservice.adapters.messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -46,7 +46,9 @@ public class RabbitMqConfig {
         return new Declarables(
                 new FanoutExchange("x.patient-validated"),
                 new Queue("q.patient-validated.appointment-service" ),
-                new Binding("q.patient-validated.appointment-service", Binding.DestinationType.QUEUE, "x.patient-validated", "patient-validated.appointment-service", null));
+                new Queue("q.patient-validated.api-gateway" ),
+                new Binding("q.patient-validated.appointment-service", Binding.DestinationType.QUEUE, "x.patient-validated", "patient-validated.appointment-service", null),
+                new Binding("q.patient-validated.api-gateway", Binding.DestinationType.QUEUE, "x.patient-validated", "patient-validated.api-gateway", null));
     }
 
     @Bean
@@ -59,7 +61,9 @@ public class RabbitMqConfig {
         return new Declarables(
                 new FanoutExchange("x.doctors-employed"),
                 new Queue("q.doctors-employed.appointment-service" ),
-                new Binding("q.doctors-employed.appointment-service", Binding.DestinationType.QUEUE, "x.doctors-employed", "doctors-employed.appointment-service", null));
+                new Queue("q.doctors-employed.api-gateway" ),
+                new Binding("q.doctors-employed.appointment-service", Binding.DestinationType.QUEUE, "x.doctors-employed", "doctors-employed.appointment-service", null),
+                new Binding("q.doctors-employed.api-gateway", Binding.DestinationType.QUEUE, "x.doctors-employed", "doctors-employed.api-gateway", null));
     }
 
     @Bean
@@ -113,7 +117,9 @@ public class RabbitMqConfig {
     @Bean
     public Declarables createAppointmentFinalizedExchange(){
         return new Declarables(
-                new FanoutExchange("x.appointment-finalized"));
+                new FanoutExchange("x.appointment-finalized"),
+                new Queue("q.appointment-finalized.api-gateway" ),
+                new Binding("q.appointment-finalized.api-gateway", Binding.DestinationType.QUEUE, "x.appointment-finalized", "appointment-finalized.api-gateway", null));
     }
 
     @Bean

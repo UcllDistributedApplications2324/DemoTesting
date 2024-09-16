@@ -4,7 +4,7 @@ import be.ucll.da.doctorservice.DoctorServiceApplication;
 import be.ucll.da.doctorservice.api.DoctorApiController;
 import be.ucll.da.doctorservice.domain.Doctor;
 import be.ucll.da.doctorservice.domain.DoctorService;
-import be.ucll.da.doctorservice.web.DoctorController;
+import be.ucll.da.doctorservice.adapters.web.incoming.DoctorController;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;

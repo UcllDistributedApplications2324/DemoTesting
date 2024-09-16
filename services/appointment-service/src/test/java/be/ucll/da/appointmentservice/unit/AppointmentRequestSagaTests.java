@@ -4,7 +4,7 @@ import be.ucll.da.appointmentservice.client.doctor.api.model.DoctorsOnPayrollEve
 import be.ucll.da.appointmentservice.domain.appointment.Appointment;
 import be.ucll.da.appointmentservice.domain.appointment.AppointmentRepository;
 import be.ucll.da.appointmentservice.domain.appointment.AppointmentRequestSaga;
-import be.ucll.da.appointmentservice.messaging.RabbitMqMessageSender;
+import be.ucll.da.appointmentservice.adapters.messaging.RabbitMqMessageSender;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
