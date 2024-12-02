@@ -12,6 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
+// This annotation is not necessary since we are only testing the integration layer
+// We don't need to start up the entire class
+
 // @SpringBootTest(classes = DoctorServiceApplication.class)
 public class DoctorBase {
 
