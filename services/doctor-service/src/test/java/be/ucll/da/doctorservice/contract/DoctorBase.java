@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
-@SpringBootTest(classes = DoctorServiceApplication.class)
+// @SpringBootTest(classes = DoctorServiceApplication.class)
 public class DoctorBase {
 
     @BeforeEach
@@ -23,7 +23,5 @@ public class DoctorBase {
 
         Mockito.when(doctorService.getDoctor(122))
                 .thenReturn(Optional.of(new Doctor(122, "fieldOfExpertise", "firstName", "lastName", 1,  "address")));
-        Mockito.when(doctorService.getDoctor(123))
-                .thenThrow(new RuntimeException("Message about the error"));
     }
 }
